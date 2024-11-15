@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+    height: 100%;
+    margin: unset;
+    overflow: hidden;
+}
+
+/*.carousel-slide {*/
+/*    transition: transform 0.5s ease-in-out;*/
+/*}*/
