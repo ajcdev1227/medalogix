@@ -1,30 +1,47 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, forwardRef, useImperativeHandle} from 'react';
 import Cards from './Cards/Cards';
 
-const Container = ({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubIndex, setModalShow}) => {
+const Container = forwardRef(({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubIndex, setModalShow}, ref) => {
     const [translateX, setTranslateX] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [maxTranslateX, setMaxTranslateX] = useState(0);
 
-    useEffect(() => {
-        let initialTranslateX = 0;
-        for (let i = 0; i < curIndex; i++) {
-            initialTranslateX += 336 + 480 * cardsInfo[i].cardInfo.length;
-        }
-        initialTranslateX += 480 * curSubIndex;
-        initialTranslateX = Math.min(maxTranslateX, initialTranslateX);
-        setTranslateX(initialTranslateX);
-    }, [curIndex, curSubIndex])
+    useImperativeHandle(ref, () => setTranslateX);
 
     useEffect(() => {
         let initialTranslateX = 0;
         for (let i = 0; i < cardsInfo.length - 1; i++) {
             initialTranslateX += 336 + 480 * cardsInfo[i].cardInfo.length;
         }
-        initialTranslateX += 480 * (cardsInfo[cardsInfo.length - 1].cardInfo.length - 2);
+        initialTranslateX += 480 * (cardsInfo[cardsInfo.length - 1].cardInfo.length - 1);
         setMaxTranslateX(initialTranslateX);
     }, [cardsInfo]);
+
+    useEffect(() => {
+        let initialTranslateX = 0;
+        let i, j;
+        for (i = 0; i < cardsInfo.length; i++) {
+            initialTranslateX += (i < 3) ? 296 : 500;
+            if (translateX < initialTranslateX) {
+                setCurIndex(i);
+                setCurSubIndex(0);
+                break;
+            }
+            for (j = 0; j < cardsInfo[i].cardInfo.length; j++) {
+                initialTranslateX += 480 * j;
+                if (translateX < initialTranslateX) {
+                    break;
+                }
+            }
+            if (j < cardsInfo[i].cardInfo.length) {
+                setCurIndex(i);
+                setCurSubIndex(j);
+                break;
+            }
+            initialTranslateX += 40;
+        }
+    }, [translateX]);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -36,7 +53,7 @@ const Container = ({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubInde
         if (!isDragging) return;
         const diff = e.clientX - startX;
         setStartX(e.clientX);
-        setTranslateX((prev) => Math.min(maxTranslateX, prev - diff));
+        setTranslateX((prev) => Math.min(maxTranslateX, Math.max(0, prev - diff)));
 
         // let beforeTranslateX = 0;
         // for (let i = 0; i < curIndex; i++) {
@@ -46,6 +63,14 @@ const Container = ({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubInde
         // if (translateX - beforeTranslateX > 480 && curSubIndex < cardsInfo[curIndex].cardInfo.length - 1) {
         //     setCurSubIndex(curSubIndex + 1);
         // }
+    };
+
+    const handleScroll = (e) => {
+        setTranslateX((prev) => {
+            const sensitivity = 1.5;
+            const nextTranslateX = prev + e.deltaY * sensitivity;
+            return Math.min(Math.max(nextTranslateX, 0), maxTranslateX);
+        });
     };
 
     const handleMouseUp = (e) => {
@@ -60,7 +85,9 @@ const Container = ({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubInde
                      onMouseDown={handleMouseDown}
                      onMouseMove={handleMouseMove}
                      onMouseUp={handleMouseUp}
-                     onMouseLeave={handleMouseUp}>
+                     onMouseLeave={handleMouseUp}
+                     onWheel={handleScroll}
+                >
                     <div className="carousel-slide flex flex-row gap-[120px] transition-transform duration-500"
                          style={{
                              transform: `translateX(-${translateX}px)`
@@ -82,6 +109,6 @@ const Container = ({cardsInfo, curIndex, setCurIndex, curSubIndex, setCurSubInde
             </div>
         </>
     );
-}
+})
 
 export default Container;

@@ -4,7 +4,7 @@ const Card = ({index, src, curSubIndex, title, cardIndex, curIndex, setCurIndex,
     return (
         <>
             <div className={`flex flex-col gap-[16px] w-[400px] ${index % 2 === 1 ? 'justify-end' : 'justify-start'}`}>
-                <div className="flex flex-row w-full items-center justify-center">
+                <div className="flex flex-row w-full items-center justify-center zoom-on-hover">
                     <img className={`${index % 2 === 0 ? 'h-[400px]' : 'h-[320px] w-[320px]'} self-stretch rounded-[24px] cursor-pointer`}
                          src={src}
                          alt={title}

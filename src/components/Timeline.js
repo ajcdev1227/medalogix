@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex}) => {
+const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex, setTranslatePosition}) => {
     return (
         <>
             <div className="relative mb-[75px] h-[56px] mx-[80px] flex-shrink-0">
@@ -9,9 +9,16 @@ const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex
                         <div className="flex flex-row gap-[8px] px-[16px] py-[8px] bg-[#1A2141] rounded-[8px]"
                              onClick={() => {
                                  if (curIndex > 0) {
-                                     setCurIndex(curIndex - 1);
+                                     let position = 0;
+                                     for (let i = 0; i < curIndex - 1; i++) {
+                                         position += 336 + 480 * cardsInfo[i].cardInfo.length;
+                                     }
+                                     setTranslatePosition(position);
+                                     // setCurIndex(curIndex - 1);
+                                 }else {
+                                     setTranslatePosition(0);
                                  }
-                                 setCurSubIndex(0);
+                                 //setCurSubIndex(0);
                              }}>
                             <div dangerouslySetInnerHTML={{__html: cardsInfo[curIndex].icon}}/>
                             <span className="flex flex-col justify-center text-[#A1CFC2] font-montserrat text-[18px] font-semibold leading-[120%]">
@@ -26,7 +33,16 @@ const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex
                                 <div
                                     key={i}
                                     className="flex flex-col justify-center items-center bg-white border-[2px] border-[#1A2141] w-[42px] h-[42px] flex-shrink-0 z-[20] rounded-3xl cursor-pointer"
-                                    onClick={() => setCurSubIndex(i)}>
+                                    onClick={() => {
+                                        let position = 0;
+                                        for (let j = 0; j < curIndex; j++) {
+                                            position += 336 + 480 * cardsInfo[j].cardInfo.length;
+                                        }
+                                        position += 480 * i;
+                                        setTranslatePosition(position);
+                                        console.log("position: ", position);
+                                        //setCurSubIndex(i)
+                                    }}>
                                     <div className="flex flex-col justify-center items-center bg-[#1A2141] w-[34px] h-[34px] flex-shrink-0 rounded-3xl">
                                         <span className="text-[#F7F7F7] text-center font-montserrat font-semibold text-[18px]">{i + 1}</span>
                                     </div>
@@ -34,7 +50,16 @@ const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex
                             ) : (
                                 <div
                                     className="flex flex-col justify-center items-center bg-[#A1CFC2] w-[34px] h-[34px] flex-shrink-0 rounded-3xl z-[20] cursor-pointer"
-                                    onClick={() => setCurSubIndex(i)}>
+                                    onClick={() => {
+                                        let position = 0;
+                                        for (let j = 0; j < curIndex; j++) {
+                                            position += 336 + 480 * cardsInfo[j].cardInfo.length;
+                                        }
+                                        position += 480 * i;
+                                        setTranslatePosition(position);
+                                        console.log("position: ", position);
+                                        //setCurSubIndex(i)
+                                    }}>
                                     <span className="text-[#1A2141] text-center font-montserrat font-semibold text-[18px]">{i + 1}</span>
                                 </div>
                             )
@@ -60,8 +85,13 @@ const Timeline = ({cardsInfo, curIndex, curSubIndex, setCurIndex, setCurSubIndex
                         <div
                             className="inline-flex h-full px-[16px] py-[8px] items-center gap-[8px] rounded-[8px] border-[2px] border-[#1A869C] bg-white z-[20] cursor-pointer"
                             onClick={() => {
-                                setCurIndex(curIndex + 1);
-                                setCurSubIndex(0);
+                                let position = 0;
+                                for (let i = 0; i < curIndex + 1; i++) {
+                                    position += 336 + 480 * cardsInfo[i].cardInfo.length;
+                                }
+                                setTranslatePosition(position);
+                                // setCurIndex(curIndex + 1);
+                                // setCurSubIndex(0);
                             }}>
                             <div dangerouslySetInnerHTML={{__html: cardsInfo[curIndex + 1].icon}}/>
                             <span className="flex flex-col justify-center text-[#1A869C] font-montserrat text-[18px] font-semibold leading-[120%]">

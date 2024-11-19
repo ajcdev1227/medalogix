@@ -7,7 +7,7 @@ const Cards = ({info, cardIndex, curIndex, curSubIndex, setCurSubIndex, setCurIn
             <div className="h-full flex flex-row gap-[120px]">
                 <div className="flex flex-col justify-center">
                     {cardIndex === 3 ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="172" height="31" viewBox="0 0 172 31" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="176" height="31" viewBox="0 0 172 31" fill="none">
                             <g clipPath="url(#clip0_5380_2381)">
                                 <mask id="mask0_5380_2381" style={{maskType: 'luminance'}} maskUnits="userSpaceOnUse" x="0" y="0" width="172" height="31">
                                     <path d="M172 0.5H0V30.5H172V0.5Z" fill="white"/>

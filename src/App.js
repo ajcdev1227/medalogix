@@ -1,5 +1,5 @@
 import {Nav, Timeline, Container, PulseModal} from "./components"
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 
 const cardsInfo = [
     {
@@ -14,15 +14,15 @@ const cardsInfo = [
                 </svg>`,
         cardInfo: [
             {
-                src: "/assets/images/img1-1.png",
+                src: "./assets/images/img1-1.png",
                 title: "Patient Referral Received"
             },
             {
-                src: "/assets/images/img1-2.png",
+                src: "./assets/images/img1-2.png",
                 title: "Patient Admission is Pending"
             },
             {
-                src: "/assets/images/img1-3.png",
+                src: "./assets/images/img1-3.png",
                 title: "Patient Plan of Care Development "
             }
         ]
@@ -39,15 +39,15 @@ const cardsInfo = [
                </svg>`,
         cardInfo: [
             {
-                src: "/assets/images/img2-1.png",
+                src: "./assets/images/img2-1.png",
                 title: "The Patient's Condition Worsens"
             },
             {
-                src: "/assets/images/img2-2.png",
+                src: "./assets/images/img2-2.png",
                 title: "The Patient's Condition Significantly Improves"
             },
             {
-                src: "/assets/images/img2-3.png",
+                src: "./assets/images/img2-3.png",
                 title: "End of Episode Plan of Care Review"
             }
         ]
@@ -61,11 +61,11 @@ const cardsInfo = [
                </svg>`,
         cardInfo: [
             {
-                src: "/assets/images/img3-1.png",
+                src: "./assets/images/img3-1.png",
                 title: "Patient Would Be Better Served by Hospice Care"
             },
             {
-                src: "/assets/images/img3-2.png",
+                src: "./assets/images/img3-2.png",
                 title: "There Are Questions About the Patient's Fit for Hospice Care"
             }
         ]
@@ -82,15 +82,15 @@ const cardsInfo = [
                </svg>`,
         cardInfo: [
             {
-                src: "/assets/images/img4-1.png",
+                src: "./assets/images/img4-1.png",
                 title: "Patient Considering Hospice Revocation"
             },
             {
-                src: "/assets/images/img4-2.png",
+                src: "./assets/images/img4-2.png",
                 title: "Patient Experiences a Sudden Decline in Condition (SDiC)"
             },
             {
-                src: "/assets/images/img4-3.png",
+                src: "./assets/images/img4-3.png",
                 title: "Patient Enters Final Days of Life"
             }
         ]
@@ -169,21 +169,21 @@ const modalProperty = {
     nonChallenges: [
         [
             {
-                src: "/assets/gifs/R&A-ReferralSummaryReview.gif",
+                src: "./assets/gifs/R&A-ReferralSummaryReview.gif",
                 contents: [
                     "The referral packet is intelligently analyzed and converted into a single-page Referral Summary with diagnostic insights for review.",
                     "Admitting clinicians can review patient data much more effectively for engaging, well-prepared visits that create a better patient experience."
                 ]
             },
             {
-                src: "/assets/gifs/R&A - Pending Reason Sticky Note.gif",
+                src: "./assets/gifs/R&A - Pending Reason Sticky Note.gif",
                 contents: [
                     "Intake teams are able to use Sticky Notes and EMR connectivity to quickly understand and act on pending admissions.",
                     "The patient experiences quicker admission time with less worry and better-informed providers."
                 ]
             },
             {
-                src: "/assets/gifs/R&A - AI Insight.gif",
+                src: "./assets/gifs/R&A - AI Insight.gif",
                 contents: [
                     "The Admission Summary highlights conflicting and supporting clinical evidence across clinical notes, referral documents, and OASIS.",
                     "Care teams receive smart insights for clinical documentation improvement, starting the patient off on the right foot with a more accurate Plan of Care",
@@ -193,7 +193,7 @@ const modalProperty = {
         ],
         [
             {
-                src: "/assets/gifs/Episodes - Initial Visit Check.gif",
+                src: "./assets/gifs/Episodes - Initial Visit Check.gif",
                 contents: [
                     "Breakthrough predictive analytics drive higher responsiveness to changes in patient condition as trends are compared against a broad data set to predict needed Plan of Care updates.",
                     "Patients experience care that is consistently adjusted to their condition, avoiding hospitalizations in cases where they may otherwise have happened.",
@@ -201,14 +201,14 @@ const modalProperty = {
                 ]
             },
             {
-                src:"/assets/gifs/Proactively addressing.png",
+                src:"./assets/gifs/Proactively addressing.png",
                 contents: [
                     "Provides visit-by-visit insights into patients whose utilization isn’t aligned to their risk profile, driving clinician action to balance the scale.",
                     "Agencies are able to reallocate care resources with confidence that patients are still receiving appropriate care."
                 ]
             },
             {
-                src: "/assets/gifs/Proactively addressing.png",
+                src: "./assets/gifs/Proactively addressing.png",
                 contents: [
                     "Intelligently surfaces clinical insights to facilitate end-of-episode care decisions, improving continuity of care for those patients best served by staying in home health.",
                     "Patients have higher confidence that decisions about their care are rooted in clinical evidence and if they’re discharged, it’s for good reason.",
@@ -218,7 +218,7 @@ const modalProperty = {
         ],
         [
             {
-                src: "/assets/gifs/Hospice Evaluations.gif",
+                src: "./assets/gifs/Hospice Evaluations.gif",
                 contents: [
                     "Proprietary data science surfaces patients whose condition make them more likely to pass away in the next 60 days. Recommendations and supporting evidence are given.",
                     "Care teams can move quickly and confidently through the transition evaluation workflow, prioritizing decisions by risk and helping patients move earlier.",
@@ -227,7 +227,7 @@ const modalProperty = {
                 ]
             },
             {
-                src:"/assets/gifs/Transitions Notes.gif",
+                src:"./assets/gifs/Transitions Notes.gif",
                 contents: [
                     "Transitions brings transition navigators and clinical managers together with transparent hospice evaluation workflows and the ability to exchange notes between teams and into the EMR.",
                     "Patients spend less time in limbo, and clinicians can use surfaced clinical insights to better substantiate decisions to patients for greater peace of mind."
@@ -236,14 +236,14 @@ const modalProperty = {
         ],
         [
             {
-                src:"/assets/gifs/Proactively addressing.png",
+                src:"./assets/gifs/Proactively addressing.png",
                 contents: [
                     "Applying breakthrough data science models, Muse identifies patients who are 5x more likely to revoke hospice care within 30 days and recommends action for hospice teams.",
                     "Because care teams can add a tuck in call, education, volunteer services, and other resources, patients feel better supported in and prepared for their hospice journey."
                 ]
             },
             {
-                src:"/assets/gifs/Proactively addressing.png",
+                src:"./assets/gifs/Proactively addressing.png",
                 contents: [
                     "Predictive analytics help providers respond to changes in patient condition with evidence-based utilization recommendations.",
                     "Patients experience care that is consistently adjusted to their condition, preventing gaps in care",
@@ -251,7 +251,7 @@ const modalProperty = {
                 ]
             },
             {
-                src: "/assets/gifs/Proactively addressing.png",
+                src: "./assets/gifs/Proactively addressing.png",
                 contents: [
                     "Muse helps identify patients who are more likely to pass away, and ensures additional resources are allocated to fully support them.",
                     "On average, Muse clients perform 45.5% better on HVLDL than the national benchmark, with improvements as high as 89% more patients meeting HVLDL visits. Clients like Amedisys, Avow, Bayada, Knute Nelson, and others have found great success with Muse"
@@ -262,9 +262,16 @@ const modalProperty = {
 }
 
 function App() {
+    const setTranslateXRef = useRef(null);
     const [curIndex, setCurIndex] = useState(0);
     const [curSubIndex, setCurSubIndex] = useState(0);
     const [modalShow, setModalShow] = useState(false);
+
+    const setTranslatePosition = (position) => {
+        if (setTranslateXRef.current) {
+            setTranslateXRef.current(position);
+        }
+    };
 
     return (
         <div className="flex flex-col justify-between h-full w-full">
@@ -277,6 +284,7 @@ function App() {
                     setCurIndex={setCurIndex}
                     setCurSubIndex={setCurSubIndex}
                     setModalShow={setModalShow}
+                    ref={setTranslateXRef}
                 />
                 <Timeline
                     cardsInfo={cardsInfo}
@@ -284,6 +292,7 @@ function App() {
                     curSubIndex={curSubIndex}
                     setCurIndex={setCurIndex}
                     setCurSubIndex={setCurSubIndex}
+                    setTranslatePosition={setTranslatePosition}
                 />
             </div>
             {modalShow && (

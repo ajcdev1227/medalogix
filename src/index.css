@@ -8,6 +8,14 @@ html, body, #root {
     overflow: hidden;
 }
 
+.zoom-on-hover {
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+}
+
+.zoom-on-hover:hover {
+    transform: scale(1.05); /* Scales the image to 110% of its original size */
+}
+
 /*.carousel-slide {*/
 /*    transition: transform 0.5s ease-in-out;*/
 /*}*/
